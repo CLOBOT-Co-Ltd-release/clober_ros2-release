@@ -1,8 +1,9 @@
 
-Changelog for Clober
+Changelog for clober_navigation pacakage
 ^^^^^^^^^^^^^^^^^^^^^^^
+
 
 
 0.1.0 (2021-06-18)
 ------------------
-* Initial ROS2 Clober pacakage
+* add initial clober_navigation pacakage
