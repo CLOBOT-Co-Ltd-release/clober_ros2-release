@@ -1,41 +1,71 @@
-# Clober!
-<img align="center" src="https://github.com/clobot-git/clober/blob/foxy-devel/images/logo.png" width="400">
-This project currently contains basic launch and urdf files for the simulation of Clober Robot research platform. We will be providing higher level packages soon, probably relatively prior to the 2021 ROScon schedule. Have fun using our packages and hope to see you at ROScon!
+# Clober Simulation
 
-## ROS 1 Packages for Clober
-[![Licence](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-|ROS1|Noetic + Ubuntu Focal|
-|:---:|:---:|
-|Branch|[`neotic-branch`](https://github.com/clobot-git/clober/tree/noetic-devel)|
-|Travis-CI|[![Build Status](https://travis-ci.com/clobot-git/clober.svg?branch=noetic-devel)](https://travis-ci.com/clobot-git/clober)|
-|Linter|[![Lint](https://github.com/clobot-git/clober/workflows/Lint/badge.svg?branch=noetic-devel)](https://github.com/clobot-git/clober/actions)|
+## 1. Installation
+### 1.1 Install ROS 2.0 (Foxy)
+https://docs.ros.org/en/foxy/Installation.html
 
-## ROS 2 Packages for Clober
-[![Licence](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-|ROS2|Foxy + Ubuntu Focal|Galactic|
-|:---:|:---:|:---:|
-|Branch|[`foxy-devel`](https://github.com/clobot-git/clober/tree/foxy-devel)| TBD |
-|Travis-CI|[![Build Status](https://travis-ci.com/clobot-git/clober.svg?branch=foxy-devel)](https://travis-ci.com/clobot-git/clober)| TBD |
-|Linter|[![Lint](https://github.com/clobot-git/clober/workflows/Lint/badge.svg?branch=foxy-devel)](https://github.com/clobot-git/clober/actions)| TBD |
+### 1.2 Install development tool
+```bash
+sudo apt update && sudo apt install -y \
+  build-essential \
+  cmake \
+  git \
+  libbullet-dev \
+  python3-colcon-common-extensions \
+  python3-flake8 \
+  python3-pip \
+  python3-pytest-cov \
+  python3-rosdep \
+  python3-setuptools \
+  python3-vcstool \
+  openssh-server \
+  wget
+```
 
-## Clobot gitbook for Clober Manual
-- [Manual for Clober](https://app.gitbook.com/@clobot-git/s/clober-manual/)
+### 1.3 Install Gazebo (gazebo 11)
+http://gazebosim.org/tutorials?tut=ros2_installing&cat=connect_ros
 
-## Wiki for Clober Packages
-- http://wiki.ros.org/clober (metapackage)
-- http://wiki.ros.org/clober_bringup (under_development)
-- http://wiki.ros.org/clober_description
-- http://wiki.ros.org/clober_teleop (under_development)
-- http://wiki.ros.org/clober_slam
-- http://wiki.ros.org/clober_navigation
-- http://wiki.ros.org/clober_simulation
+### 1.4 Install xacro packages
 
-## Clobot developed Opensource packages
-- [ FreeFleet ](http://wiki.ros.org/RMF/FreeFleet)
-- [ Scheduler ](http://wiki.ros.org/RMF/Scheduler)
-- [ Multi Map Traffic Editor ](http://wiki.ros.org/RMF/traffic_editor)
+```
+sudo apt-get install ros-foxy-xacro
+```
 
-## Pages Relevant to Clober
-- [ Clobot Homepage ](https://www.clobot.co.kr/)
-- [ Clobot YouTube ](https://www.youtube.com/channel/UCau5FLJpMxhvW-IHZ8c8qKQ/featured/)
+### 1.5 Install Clober Packages
+```
+$ mkdir -p ~/clober_ws/src
+cd ~/clober_ws/
+wget https://raw.githubusercontent.com/clobot-git/clober/foxy-devel/clober.repos
+vcs import src < clober.repos
+```
 
+### 1.6 Install other dependencies
+```
+cd ~/clober_ws/
+source /opt/ros/foxy/setup.bash
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y --rosdistro foxy
+```
+
+### 1.7 Colcon build the packages
+```
+cd ~/clober_ws/
+source /opt/ros/foxy/setup.bash
+colcon build --symlink-install
+source ~/clober_ws/install/setup.bash
+```
+
+## 2. Launch Simulation World
+```
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:~/clober_ws/src/clober/clober_simulation/models
+
+ros2 launch clober_simulation clober_world.launch.py
+```
+
+<img align="center" src="https://github.com/clobot-git/clober/blob/foxy-devel/images/clober_gazebo.png">
+
+## 3. Operate Clober
+To teleoperate the simulated Clober with the keyboard, launch the teleoperation node in a new terminal window.
+  ```
+  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  ```
