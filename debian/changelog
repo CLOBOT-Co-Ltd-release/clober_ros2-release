@@ -1,7 +1,0 @@
-ros-foxy-clober-navigation (0.1.0-2focal) focal; urgency=high
-
-  * add initial clober_navigation pacakage
-
- -- clobot-git <ros@clobot.co.kr>  Thu, 17 Jun 2021 15:00:00 -0000
-
-
