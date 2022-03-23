@@ -1,7 +1,0 @@
-ros-foxy-clober-bringup (0.1.0-3focal) focal; urgency=high
-
-  * add initial clober_bringup pacakage
-
- -- clobot-git <ros@clobot.co.kr>  Sun, 09 May 2021 15:00:00 -0000
-
-
