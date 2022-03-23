@@ -1,7 +1,0 @@
-ros-foxy-clober-slam (0.1.0-3focal) focal; urgency=high
-
-  * add initial clober_slam pacakage
-
- -- clobot-git <ros@clobot.co.kr>  Thu, 17 Jun 2021 15:00:00 -0000
-
-
