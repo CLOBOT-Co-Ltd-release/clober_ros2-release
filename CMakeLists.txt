@@ -47,16 +47,10 @@ set(serial_srcs
 )
 
 add_library(libserial ${serial_srcs})
-target_link_libraries(libserial rt pthread ${catkin_LIBRARIES})
+target_link_libraries(libserial rt ${catkin_LIBRARIES})
 
 
 set(EXECUTABLE_NAME "clober_serial_node")
-
-add_executable(${EXECUTABLE_NAME}
-  src/main.cpp
-  src/clober_serial.cpp
-  src/clober_utils.cpp
-)
 
 set(DEPENDENCIES
   "geometry_msgs"
@@ -71,8 +65,14 @@ set(DEPENDENCIES
   "clober_msgs"
 )
 
-ament_target_dependencies(${EXECUTABLE_NAME} ${DEPENDENCIES})
+add_executable(${EXECUTABLE_NAME}
+  src/main.cpp
+  src/clober_serial.cpp
+  src/clober_utils.cpp
+)
+
 target_link_libraries(${EXECUTABLE_NAME} libserial ${Boost_LIBRARIES} ${ament_LIBRARIES})
+ament_target_dependencies(${EXECUTABLE_NAME} ${DEPENDENCIES})
 
 install(TARGETS ${EXECUTABLE_NAME}
   DESTINATION lib/${PROJECT_NAME}
