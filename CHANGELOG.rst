@@ -1,9 +1,8 @@
 
-Changelog for clober_bringup pacakage
+Changelog for Clober
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 
-
-0.1.0 (2021-05-10)
+0.1.0 (2021-06-18)
 ------------------
-* add initial clober_bringup pacakage
+* Initial ROS2 Clober pacakage
