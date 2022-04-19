@@ -1,64 +1,41 @@
-# Clober SLAM
+# Clober!
+<img align="center" src="https://github.com/clobot-git/clober/blob/foxy-devel/images/logo.png" width="400">
+This project currently contains basic launch and urdf files for the simulation of Clober Robot research platform. We will be providing higher level packages soon, probably relatively prior to the 2021 ROScon schedule. Have fun using our packages and hope to see you at ROScon!
 
-## 1. Run Clober (Simulation)
-### 1.1 Launch Simulation World
-```bash
-export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:~/clober_ws/src/clober/clober_simulation/models
+## ROS 1 Packages for Clober
+[![Licence](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+|ROS1|Noetic + Ubuntu Focal|
+|:---:|:---:|
+|Branch|[`neotic-branch`](https://github.com/clobot-git/clober/tree/noetic-devel)|
+|Travis-CI|[![Build Status](https://travis-ci.com/clobot-git/clober.svg?branch=noetic-devel)](https://travis-ci.com/clobot-git/clober)|
+|Linter|[![Lint](https://github.com/clobot-git/clober/workflows/Lint/badge.svg?branch=noetic-devel)](https://github.com/clobot-git/clober/actions)|
 
-source /opt/ros/foxy/setup.bash
-source ~/clober_ws/install/setup.bash
-ros2 launch clober_simulation clober_world.launch.py
-```
+## ROS 2 Packages for Clober
+[![Licence](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+|ROS2|Foxy + Ubuntu Focal|Galactic|
+|:---:|:---:|:---:|
+|Branch|[`foxy-devel`](https://github.com/clobot-git/clober/tree/foxy-devel)| TBD |
+|Travis-CI|[![Build Status](https://travis-ci.com/clobot-git/clober.svg?branch=foxy-devel)](https://travis-ci.com/clobot-git/clober)| TBD |
+|Linter|[![Lint](https://github.com/clobot-git/clober/workflows/Lint/badge.svg?branch=foxy-devel)](https://github.com/clobot-git/clober/actions)| TBD |
 
-### 1.2 Operate Clober
-To teleoperate the simulated Clober with the keyboard, launch the teleoperation node in a new terminal window.
-```bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
-```
+## Clobot gitbook for Clober Manual
+- [Manual for Clober](https://app.gitbook.com/@clobot-git/s/clober-manual/)
 
-## 2. Launch SLAM
-### 2.1  Cartographer SLAM
+## Wiki for Clober Packages
+- http://wiki.ros.org/clober (metapackage)
+- http://wiki.ros.org/clober_bringup (under_development)
+- http://wiki.ros.org/clober_description
+- http://wiki.ros.org/clober_teleop (under_development)
+- http://wiki.ros.org/clober_slam
+- http://wiki.ros.org/clober_navigation
+- http://wiki.ros.org/clober_simulation
 
-install cartographer package :
-```bash
-sudo apt-get install ros-foxy-cartographer*
-```
+## Clobot developed Opensource packages
+- [ FreeFleet ](http://wiki.ros.org/RMF/FreeFleet)
+- [ Scheduler ](http://wiki.ros.org/RMF/Scheduler)
+- [ Multi Map Traffic Editor ](http://wiki.ros.org/RMF/traffic_editor)
 
-Launch Cartographer SLAM :
-
-```bash
-source /opt/ros/foxy/setup.bash
-source ~/clober_ws/install/setup.bash
-ros2 launch clober_slam cartographer.launch.py
-```
-
-<img align="center" src="https://github.com/clobot-git/clober/blob/foxy-devel/images/clober_slam.png" width=400>
-
-### 2.2  Gmapping SLAM
-
-install slam_gmapping package :
-```bash
-git clone https://github.com/clobot-git/slam_gmapping.git
-```
-
-* original slam_gmapping package source : https://github.com/Adlink-ROS/slam_gmapping
-
-Launch Gmapping SLAM :
-
-```bash
-source /opt/ros/foxy/setup.bash
-source ~/clober_ws/install/setup.bash
-ros2 launch clober_slam gmapping.launch.py
-```
-<img align="center" src="https://github.com/clobot-git/clober/blob/foxy-devel/images/clober_slam.gif">
-
-
-## 3. Save the map
-```bash
-source /opt/ros/foxy/setup.bash
-ros2 run nav2_map_server map_saver_cli -f (filename) --ros-args -p save_map_timeout:=10000
-```
-
-<img align="center" src="https://github.com/clobot-git/clober/blob/foxy-devel/images/map_3x3.png" width=400>
-
+## Pages Relevant to Clober
+- [ Clobot Homepage ](https://www.clobot.co.kr/)
+- [ Clobot YouTube ](https://www.youtube.com/channel/UCau5FLJpMxhvW-IHZ8c8qKQ/featured/)
 
